@@ -1,73 +1,136 @@
 package com.helpdesk.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import com.helpdesk.entity.Register_Entity;
 import com.helpdesk.service.Login_Service;
 
-import org.springframework.ui.Model;
-
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class Login_Controller {
-	
-	@Autowired
-	Login_Service login_service;
-	
-	@RequestMapping("/register")
-	public String new_register(@ModelAttribute Register_Entity register_entity, HttpSession session) {
-	    
-	    Boolean isOtpVerified = (Boolean) session.getAttribute("isOtpVerified");
-	    if (isOtpVerified == null || !isOtpVerified) {
-	        // redirect or show error
-	        return "redirect:/register_page?error=otpNotVerified";
-	    }
 
-	    String fullname = register_entity.getFirstname()+" "+register_entity.getMiddlename()+" "+register_entity.getLastname();
-	    register_entity.setFullname(fullname);
-	    login_service.register_user(register_entity);
-	    
-	    // Clear OTP verified flag
-	    session.removeAttribute("isOtpVerified");
+    @Autowired
+    private Login_Service login_service;
 
-	    return "Register";
-	}
+    // ✅ Inject JavaMailSender
+    @Autowired
+    private JavaMailSender mailSender;
 
-	
-	 @RequestMapping("/login")
-	    public String loginUser(
-	            @RequestParam("username") String username,
-	            @RequestParam("password") String password,
-	            @RequestParam("captchaEntered") String captchaEntered,
-	            @RequestParam("captchaGenerated") String captchaGenerated,
-	            Model model) {
+    // ✅ STEP 1: Registration Page
+    @RequestMapping("/register_page")
+    public String showRegisterPage() {
+        return "Register";
+    }
 
-		 	// Captcha Verification
-	        if (!captchaEntered.equals(captchaGenerated)) {
-	            model.addAttribute("error", "Invalid Captcha. Please try again.");
-	            return "Login"; 
-	        }
+    // ✅ STEP 2: Send OTP via Email
+    @PostMapping("/sendotp")
+    @ResponseBody
+    public String sendOtp(@RequestParam("email") String email, HttpSession session) {
+        if (email == null || email.isEmpty()) {
+            return "Email is required!";
+        }
 
-            // User Login
-	        Register_Entity register_entity = new Register_Entity(username, password);
-	        
-	        boolean isValid = login_service.login(register_entity);
-	        if (!isValid) {
-	            model.addAttribute("error", "Invalid username or password.");
-	            return "Login"; 
-	        }
+        // Generate 6-digit OTP
+        int otp = 100000 + new Random().nextInt(900000);
+       
 
-	        // ✅ Step 3: If valid
-	        return "redirect:/home_page";
-	 }
-	 }
+        // Store in session
+        session.setAttribute("otp", otp);
+        session.setAttribute("otpEmail", email);
+        session.setAttribute("isOtpVerified", false);
 
-	 
+        try {
+            // ✅ Send email
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(email);
+            message.setSubject("Your Civic Citizen HelpDesk OTP Code");
+            message.setText("Dear User,\n\nYour OTP for registration is: " + otp +
+                    "\n\nPlease do not share this code with anyone.\n\nThank you,\nCivic Citizen HelpDesk Team");
 
+            mailSender.send(message);
+            
+            return "OTP sent successfully to your email!";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "❌ Failed to send OTP. Please check your email address or SMTP configuration.";
+        }
+    }
+
+    // ✅ STEP 3: Verify OTP
+    @PostMapping("/verifyotp")
+    @ResponseBody
+    public String verifyOtp(@RequestParam("otp") String enteredOtp, HttpSession session) {
+        Object otpObj = session.getAttribute("otp");
+
+        if (otpObj == null) {
+            return "No OTP found. Please request a new one.";
+        }
+
+        String generatedOtp = otpObj.toString();
+        if (enteredOtp.equals(generatedOtp)) {
+            session.setAttribute("isOtpVerified", true);
+            return "OTP verified successfully!";
+        } else {
+            return "Invalid OTP. Please try again.";
+        }
+    }
+
+    // ✅ STEP 4: Register User (only after OTP verified)
+    @PostMapping("/register")
+    public String newRegister(@ModelAttribute Register_Entity register_entity, HttpSession session) {
+
+        Boolean isOtpVerified = (Boolean) session.getAttribute("isOtpVerified");
+        if (isOtpVerified == null || !isOtpVerified) {
+            return "redirect:/register_page?error=otpNotVerified";
+        }
+
+        // Combine full name
+        String fullname = register_entity.getFirstname() + " " +
+                (register_entity.getMiddlename() != null ? register_entity.getMiddlename() + " " : "") +
+                register_entity.getLastname();
+        register_entity.setFullname(fullname.trim());
+
+        // Call service to save user
+        login_service.register_user(register_entity);
+
+        // Clear OTP session data
+        session.removeAttribute("otp");
+        session.removeAttribute("otpEmail");
+        session.removeAttribute("isOtpVerified");
+
+        return "redirect:/login_page?success=registered";
+    }
+
+    // ✅ STEP 5: Login
+    @PostMapping("/login")
+    public String loginUser(
+            @RequestParam("username") String username,
+            @RequestParam("password") String password,
+            @RequestParam("captchaEntered") String captchaEntered,
+            @RequestParam("captchaGenerated") String captchaGenerated,
+            Model model) {
+
+        if (!captchaEntered.equals(captchaGenerated)) {
+            model.addAttribute("error", "Invalid Captcha. Please try again.");
+            return "Login";
+        }
+
+        Register_Entity register_entity = new Register_Entity(username, password);
+
+        boolean isValid = login_service.login(register_entity);
+        if (!isValid) {
+            model.addAttribute("error", "Invalid username or password.");
+            return "Login";
+        }
+
+        return "redirect:/home_page";
+    }
+}
