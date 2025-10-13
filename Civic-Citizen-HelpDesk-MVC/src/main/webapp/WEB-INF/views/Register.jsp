@@ -30,7 +30,7 @@
 <style>
 .register-card {
 	width: 100%;
-	max-width: 700px; /* Increased width */
+	max-width: 700px;
 }
 </style>
 </head>
@@ -42,14 +42,13 @@
 			<div class="Logo d-flex justify-content-center align-items-center">
 				<img src="assets/image/Seal_of_Maharashtra-removebg-preview.png"
 					alt="Maharashtra Logo" width="30" height="30">
-				<p class="navbar nav-logo mb-0 text-light">Government of
-					Maharashtra</p>
+				<p class="navbar nav-logo mb-0 text-light">Government of Maharashtra</p>
 			</div>
 			<div class="d-flex">
-				<a href="#" class="btn format-btn">A<sup>+</sup></a> <a href="#"
-					class="btn format-btn">A<sup>=</sup></a> <a href="#"
-					class="btn format-btn">A<sup>-</sup></a> <select
-					class="format-btn form-select language-switcher">
+				<a href="#" class="btn format-btn">A<sup>+</sup></a>
+				<a href="#" class="btn format-btn">A<sup>=</sup></a>
+				<a href="#" class="btn format-btn">A<sup>-</sup></a>
+				<select class="format-btn form-select language-switcher">
 					<option value="en" selected>English</option>
 					<option value="mr">Marathi</option>
 					<option value="hi">Hindi</option>
@@ -74,7 +73,8 @@
 					<button class="btn me-2 rounded-pill login-btn" type="button">
 						<i class="bi bi-arrow-left me-2"></i> Back to Home
 					</button>
-				</a> <img src="assets/image/Ashok_Stamb-removebg-preview.png"
+				</a>
+				<img src="assets/image/Ashok_Stamb-removebg-preview.png"
 					alt="HelpDesk Logo" width="55" height="55"
 					class="ms-2 border-start ps-3">
 			</div>
@@ -83,14 +83,11 @@
 
 	<!-- Main Content -->
 	<div class="container-fluid mb-4 p-0 rounded shadow-sm main">
-		<div
-			class="container py-5 d-flex justify-content-center align-items-center">
-
+		<div class="container py-5 d-flex justify-content-center align-items-center">
 			<div class="card shadow-lg border-0 rounded-4 register-card">
 				<div class="card-body p-5">
 					<h3 class="text-center mb-4">Register</h3>
-					<form action="register" method="POST"
-						onsubmit="return checkOtpVerified()">
+					<form action="register" method="POST" onsubmit="return checkOtpVerified()">
 
 						<!-- Full Name -->
 						<label class="form-label fw-semibold">Full Name</label>
@@ -118,8 +115,7 @@
 								</select>
 							</div>
 							<div class="col-md-6 mb-2">
-								<select class="form-select rounded-pill" name="district"
-									required>
+								<select class="form-select rounded-pill" name="district" required>
 									<option selected disabled>District</option>
 								</select>
 							</div>
@@ -144,32 +140,33 @@
 							<label>Email</label>
 							<div class="input-group">
 								<input type="email" id="email" class="form-control"
-									placeholder="Enter email">
-								<button type="button" id="sendOtpBtn" class="btn btn-primary">Send
-									OTP</button>
+									placeholder="Enter email"name="email" required>
+								<button type="button" id="sendOtpBtn" class="btn btn-primary">
+									Send OTP
+								</button>
 							</div>
 						</div>
 
 						<div class="input-group mb-3">
 							<input type="text" id="emailOtp" class="form-control"
 								placeholder="Enter OTP">
-							<button type="button" id="verifyOtpBtn" class="btn btn-success">Verify</button>
+							<button type="button" id="verifyOtpBtn" class="btn btn-success">
+								Verify
+							</button>
 						</div>
 
 						<p id="otpStatus" class="fw-semibold mt-2 text-center"></p>
 
-
-
 						<!-- Mobile & Aadhar -->
 						<div class="row mb-3">
 							<div class="col-md-6">
-								<label class="form-label fw-semibold">Mobile Number</label> <input
-									type="text" class="form-control rounded-pill" maxlength="10"
+								<label class="form-label fw-semibold">Mobile Number</label>
+								<input type="text" class="form-control rounded-pill" maxlength="10"
 									placeholder="Enter mobile" name="mobile" required>
 							</div>
 							<div class="col-md-6">
-								<label class="form-label fw-semibold">Aadhar Number</label> <input
-									type="text" class="form-control rounded-pill" maxlength="12"
+								<label class="form-label fw-semibold">Aadhar Number</label>
+								<input type="text" class="form-control rounded-pill" maxlength="12"
 									placeholder="Enter Aadhar" name="aadhar" required>
 							</div>
 						</div>
@@ -181,8 +178,8 @@
 								<input type="password" id="password"
 									class="form-control rounded-start-pill"
 									placeholder="Enter password" name="password" required>
-								<button class="btn btn-outline-dark rounded-end-pill"
-									type="button" onclick="togglePassword('password', this)">
+								<button class="btn btn-outline-dark rounded-end-pill" type="button"
+									onclick="togglePassword('password', this)">
 									<i class="bi bi-eye"></i>
 								</button>
 							</div>
@@ -194,8 +191,7 @@
 								<input type="password" id="confirm-password"
 									class="form-control rounded-start-pill"
 									placeholder="Confirm password" name="confirmpassword" required>
-								<button class="btn btn-outline-dark rounded-end-pill"
-									type="button"
+								<button class="btn btn-outline-dark rounded-end-pill" type="button"
 									onclick="togglePassword('confirm-password', this)">
 									<i class="bi bi-eye"></i>
 								</button>
@@ -210,8 +206,8 @@
 						<!-- Link -->
 						<div class="text-center mt-3">
 							<p class="small mb-0">
-								Already have an account? <a href="login_page"
-									class="text-decoration-none fw-semibold">Login</a>
+								Already have an account? 
+								<a href="login_page" class="text-decoration-none fw-semibold">Login</a>
 							</p>
 						</div>
 
@@ -230,108 +226,99 @@
 			<p class="small mb-0">An Initiative by Government of Maharashtra</p>
 			<hr class="bg-light my-3">
 			<p class="small mb-0">
-				© 2025 Civic Citizen HelpDesk. All Rights Reserved. | <a href="#"
-					class="text-decoration-none text-light">Privacy Policy</a> | <a
-					href="#" class="text-decoration-none text-light">Terms of Use</a>
+				© 2025 Civic Citizen HelpDesk. All Rights Reserved. |
+				<a href="#" class="text-decoration-none text-light">Privacy Policy</a> |
+				<a href="#" class="text-decoration-none text-light">Terms of Use</a>
 			</p>
 		</div>
 	</footer>
 
-	<!-- JavaScript -->
-
-	<!-- OTP Script -->
+	<!-- Password Toggle -->
 	<script>
-		document.getElementById("sendOtpBtn").addEventListener("click", function() {
-		    const email = document.getElementById("email").value;
-		    if (!email) {
-		        alert("Please enter email!");
-		        return;
-		    }
-		    fetch("/sendotp", {
-		        method: "POST",
-		        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-		        body: "email=" + encodeURIComponent(email)
-		    })
-		    .then(res => res.text())
-		    .then(msg => {
-		        document.getElementById("otpStatus").innerText = msg;
-		    });
-		});
-		
-		document.getElementById("verifyOtpBtn").addEventListener("click", function() {
-		    const otp = document.getElementById("emailOtp").value;
-		    if (!otp) {
-		        alert("Enter OTP first!");
-		        return;
-		    }
-		    fetch("/verifyotp", {
-		        method: "POST",
-		        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-		        body: "otp=" + encodeURIComponent(otp)
-		    })
-		    .then(res => res.text())
-		    .then(msg => {
-		        document.getElementById("otpStatus").innerText = msg;
-		    });
-		});
-	</script>
-	<!-- OTP Script -->
-
-	<script>
-		function togglePassword(id, btn) {
-			const input = document.getElementById(id);
-			const icon = btn.querySelector('i');
-			if (input.type === 'password') {
-				input.type = 'text';
-				icon.classList.replace('bi-eye', 'bi-eye-slash');
-			} else {
-				input.type = 'password';
-				icon.classList.replace('bi-eye-slash', 'bi-eye');
-			}
+	function togglePassword(id, btn) {
+		const input = document.getElementById(id);
+		const icon = btn.querySelector('i');
+		if (input.type === 'password') {
+			input.type = 'text';
+			icon.classList.replace('bi-eye', 'bi-eye-slash');
+		} else {
+			input.type = 'password';
+			icon.classList.replace('bi-eye-slash', 'bi-eye');
 		}
+	}
 	</script>
 
+	<!-- ✅ OTP Script (Fixed with Session Preservation) -->
 	<script>
-let isOtpVerified = false;
+	let isOtpVerified = false;
 
-document.getElementById("verifyOtpBtn").addEventListener("click", function() {
-    const otp = document.getElementById("emailOtp").value;
-    if (!otp) {
-        alert("Enter OTP first!");
-        return;
-    }
-    fetch("/verifyotp", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: "otp=" + encodeURIComponent(otp)
-    })
-    .then(res => res.text())
-    .then(msg => {
-        document.getElementById("otpStatus").innerText = msg;
-        if (msg.includes("Verified")) {
-            isOtpVerified = true;
-            document.getElementById("otpStatus").style.color = "green";
-        } else {
-            isOtpVerified = false;
-            document.getElementById("otpStatus").style.color = "red";
-        }
-    });
-});
+	document.getElementById("sendOtpBtn").addEventListener("click", function() {
+	    const email = document.getElementById("email").value;
+	    if (!email) {
+	        alert("Please enter email!");
+	        return;
+	    }
 
-function checkOtpVerified() {
-    if (!isOtpVerified) {
-        alert("Please verify your email with OTP before registering!");
-        return false; // stops form submission
-    }
-    return true; // allow form submit
-}
-</script>
+	    fetch("/sendotp", {
+	        method: "POST",
+	        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+	        body: "email=" + encodeURIComponent(email),
+	        credentials: "include" // ✅ Keep same session
+	    })
+	    .then(res => res.text())
+	    .then(msg => {
+	        document.getElementById("otpStatus").innerText = msg;
+	        document.getElementById("otpStatus").style.color = "blue";
+	    })
+	    .catch(() => {
+	        document.getElementById("otpStatus").innerText = "Error sending OTP!";
+	        document.getElementById("otpStatus").style.color = "red";
+	    });
+	});
 
+	document.getElementById("verifyOtpBtn").addEventListener("click", function() {
+	    const otp = document.getElementById("emailOtp").value;
+	    if (!otp) {
+	        alert("Enter OTP first!");
+	        return;
+	    }
 
+	    fetch("/verifyotp", {
+	        method: "POST",
+	        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+	        body: "otp=" + encodeURIComponent(otp),
+	        credentials: "include" // ✅ Keep same session
+	    })
+	    .then(res => res.text())
+	    .then(msg => {
+	        document.getElementById("otpStatus").innerText = msg;
+	        if (msg.toLowerCase().includes("verified")) {
+	            isOtpVerified = true;
+	            document.getElementById("otpStatus").style.color = "green";
+	        } else {
+	            isOtpVerified = false;
+	            document.getElementById("otpStatus").style.color = "red";
+	        }
+	    })
+	    .catch(() => {
+	        document.getElementById("otpStatus").innerText = "Error verifying OTP!";
+	        document.getElementById("otpStatus").style.color = "red";
+	    });
+	});
+
+	function checkOtpVerified() {
+	    if (!isOtpVerified) {
+	        alert("Please verify your email with OTP before registering!");
+	        return false;
+	    }
+	    return true;
+	}
+	</script>
+
+	<!-- Bootstrap JS -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 		crossorigin="anonymous"></script>
 </body>
-
 </html>

@@ -19,11 +19,10 @@ public class Service_Implementation {
         return restTemplate.postForObject(baseUrl + "/register", register_entity, String.class);
     }
 
-    // Login User
-	public boolean login(Register_Entity register_entity) {
-		
-		return restTemplate.postForObject(baseUrl + "/login",register_entity, Boolean.class);
-		
-	}
+ // Service_Implementation.java
+    public boolean login(Register_Entity register_entity) {
+        Boolean result = restTemplate.postForObject(baseUrl + "/login", register_entity, Boolean.class);
+        return result != null && result; // safely convert Boolean to primitive
+    }
 
 }
