@@ -40,7 +40,7 @@ public class Login_Controller {
 
         // Generate 6-digit OTP
         int otp = 100000 + new Random().nextInt(900000);
-        System.out.println("Generated OTP for " + email + ": " + otp);
+       
 
         // Store in session
         session.setAttribute("otp", otp);
@@ -56,7 +56,7 @@ public class Login_Controller {
                     "\n\nPlease do not share this code with anyone.\n\nThank you,\nCivic Citizen HelpDesk Team");
 
             mailSender.send(message);
-            System.out.println("✅ OTP email sent successfully to: " + email);
+            
             return "OTP sent successfully to your email!";
         } catch (Exception e) {
             e.printStackTrace();
