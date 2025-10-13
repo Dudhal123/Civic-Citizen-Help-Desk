@@ -1,5 +1,7 @@
 package com.example.Civic_Citizen_Help_Desk.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,26 @@ public class Civic_Citizen_HelpDesk_Service {
 		repository.save(register);
 		
 	}
+
+	public List<Civic_HelpDeskEntity> getall() {
+		
+		return repository.findAll();
+	}
+
+//	 public boolean login_user(Civic_HelpDeskEntity civic_helpdeskentity) {
+//	        long count = repository.countByEmailAndPassword(
+//	            civic_helpdeskentity.getEmail(),
+//	            civic_helpdeskentity.getPassword()
+//	        );
+//	        return count > 0;
+//	    }
 	
+	// In Civic_Citizen_HelpDesk_Service
+	// Civic_Citizen_HelpDesk_Service.java
+	public boolean login_user(Civic_HelpDeskEntity user) {
+	    Civic_HelpDeskEntity dbUser = repository.findByEmail(user.getEmail());
+	    return dbUser != null && dbUser.getPassword().equals(user.getPassword());
+	}
+
 	
 }

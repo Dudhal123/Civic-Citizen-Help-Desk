@@ -21,6 +21,5 @@ public class HomeController {
         return "Login";
     }
 
-    // ❌ REMOVE duplicate register_page here
-    // ✅ handled already in Login_Controller
+ 
 }

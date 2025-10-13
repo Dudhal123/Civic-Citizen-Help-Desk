@@ -20,17 +20,14 @@ public class Login_Controller {
     @Autowired
     private Login_Service login_service;
 
-    // ✅ Inject JavaMailSender
     @Autowired
     private JavaMailSender mailSender;
 
-    // ✅ STEP 1: Registration Page
     @RequestMapping("/register_page")
     public String showRegisterPage() {
         return "Register";
     }
 
-    // ✅ STEP 2: Send OTP via Email
     @PostMapping("/sendotp")
     @ResponseBody
     public String sendOtp(@RequestParam("email") String email, HttpSession session) {
@@ -38,17 +35,14 @@ public class Login_Controller {
             return "Email is required!";
         }
 
-        // Generate 6-digit OTP
         int otp = 100000 + new Random().nextInt(900000);
        
 
-        // Store in session
         session.setAttribute("otp", otp);
         session.setAttribute("otpEmail", email);
         session.setAttribute("isOtpVerified", false);
 
         try {
-            // ✅ Send email
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(email);
             message.setSubject("Your Civic Citizen HelpDesk OTP Code");
@@ -64,7 +58,6 @@ public class Login_Controller {
         }
     }
 
-    // ✅ STEP 3: Verify OTP
     @PostMapping("/verifyotp")
     @ResponseBody
     public String verifyOtp(@RequestParam("otp") String enteredOtp, HttpSession session) {
@@ -83,7 +76,6 @@ public class Login_Controller {
         }
     }
 
-    // ✅ STEP 4: Register User (only after OTP verified)
     @PostMapping("/register")
     public String newRegister(@ModelAttribute Register_Entity register_entity, HttpSession session) {
 
@@ -92,16 +84,13 @@ public class Login_Controller {
             return "redirect:/register_page?error=otpNotVerified";
         }
 
-        // Combine full name
         String fullname = register_entity.getFirstname() + " " +
                 (register_entity.getMiddlename() != null ? register_entity.getMiddlename() + " " : "") +
                 register_entity.getLastname();
         register_entity.setFullname(fullname.trim());
 
-        // Call service to save user
         login_service.register_user(register_entity);
 
-        // Clear OTP session data
         session.removeAttribute("otp");
         session.removeAttribute("otpEmail");
         session.removeAttribute("isOtpVerified");
@@ -109,7 +98,6 @@ public class Login_Controller {
         return "redirect:/login_page?success=registered";
     }
 
-    // ✅ STEP 5: Login
     @PostMapping("/login")
     public String loginUser(
             @RequestParam("username") String username,
