@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "users")
+@Table(name = "citizen")
 
 public class Civic_HelpDeskEntity {
 
@@ -16,9 +16,9 @@ public class Civic_HelpDeskEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String firstname;
-    private String middlename;
-    private String lastname;
+   
+    private String fullname;
+    
     private String state;
     private String district;
     private String taluka;
@@ -35,18 +35,15 @@ public class Civic_HelpDeskEntity {
     private String aadhar;
 
     private String password;
+    
+    private String confirmpassword;
 
-   public Civic_HelpDeskEntity() {
-	   
-   }
 
-   public Civic_HelpDeskEntity(Long id, String firstname, String middlename, String lastname, String state, String district, String taluka,
-		String village, String pincode, String email, String mobile, String aadhar, String password) {
+   public Civic_HelpDeskEntity(Long id, String fullname, String state, String district, String taluka,
+		String village, String pincode, String email, String mobile, String aadhar, String password,String confirmpassword) {
 	super();
 	this.id = id;
-	this.firstname = firstname;
-	this.middlename = middlename;
-	this.lastname = lastname;
+	this.fullname = fullname;
 	this.state = state;
 	this.district = district;
 	this.taluka = taluka;
@@ -56,7 +53,19 @@ public class Civic_HelpDeskEntity {
 	this.mobile = mobile;
 	this.aadhar = aadhar;
 	this.password = password;
+	this.confirmpassword = confirmpassword;
    }
+
+   public Civic_HelpDeskEntity() {
+	super();
+}
+
+   public Civic_HelpDeskEntity(String email, String password) {
+	super();
+	this.email = email;
+	this.password = password;
+}
+   
 
    public Long getId() {
 	return id;
@@ -66,30 +75,7 @@ public class Civic_HelpDeskEntity {
 	this.id = id;
    }
 
-   public String getFirstname() {
-	return firstname;
-   }
-
-   public void setFirstname(String firstname) {
-	this.firstname = firstname;
-   }
-
-   public String getMiddlename() {
-	return middlename;
-   }
-
-   public void setMiddlename(String middlename) {
-	this.middlename = middlename;
-   }
-
-   public String getLastname() {
-	return lastname;
-   }
-
-   public void setLastname(String lastname) {
-	this.lastname = lastname;
-   }
-
+  
    public String getState() {
 	return state;
    }
@@ -160,6 +146,22 @@ public class Civic_HelpDeskEntity {
 
    public void setPassword(String password) {
 	this.password = password;
+   }
+
+   public String getFullname() {
+	return fullname;
+   }
+
+   public void setFullname(String fullname) {
+	this.fullname = fullname;
+   }
+
+   public String getConfirmpassword() {
+	return confirmpassword;
+   }
+
+   public void setConfirmpassword(String confirmpassword) {
+	this.confirmpassword = confirmpassword;
    }
    
    

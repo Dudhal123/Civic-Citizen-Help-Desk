@@ -7,7 +7,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 @RestController
-@RequestMapping("/email") // ✅ add this line to group routes under /email
+@RequestMapping("/email") 
 public class OtpController {
 
     @Autowired
