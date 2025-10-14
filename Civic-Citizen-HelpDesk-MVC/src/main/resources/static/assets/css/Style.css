@@ -87,3 +87,20 @@ body{
     .login-btn:hover {
       background-color: #014080;
     }
+    
+.service-card {
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.emergency-alert {
+    background: linear-gradient(45deg, #fff3cd, #ffecb5);
+}
+
+.testimonial-card {
+    background: white;
+    border-left: 4px solid #01284F;
+}
