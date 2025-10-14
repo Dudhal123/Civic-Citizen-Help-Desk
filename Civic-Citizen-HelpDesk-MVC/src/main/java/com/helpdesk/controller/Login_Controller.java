@@ -90,7 +90,6 @@ public class Login_Controller {
         register_entity.setFullname(fullname.trim());
 
         login_service.register_user(register_entity);
-
         session.removeAttribute("otp");
         session.removeAttribute("otpEmail");
         session.removeAttribute("isOtpVerified");
@@ -104,7 +103,7 @@ public class Login_Controller {
             @RequestParam("password") String password,
             @RequestParam("captchaEntered") String captchaEntered,
             @RequestParam("captchaGenerated") String captchaGenerated,
-            Model model) {
+            Model model, HttpSession httpSession) {
 
         if (!captchaEntered.equals(captchaGenerated)) {
             model.addAttribute("error", "Invalid Captcha. Please try again.");
@@ -118,7 +117,18 @@ public class Login_Controller {
             model.addAttribute("error", "Invalid username or password.");
             return "Login";
         }
-
-        return "redirect:/home_page";
+        else {
+        	httpSession.setAttribute("email", username);
+        	String email = (String) httpSession.getAttribute("email");
+        	model.addAttribute("username", email);
+        	return "Dashboard";
+        }
+    }
+    
+    @RequestMapping("/logout")
+    public String logout(HttpSession httpSession) {
+    	httpSession.invalidate();
+		return "Login";
+    	
     }
 }
