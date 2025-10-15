@@ -28,6 +28,28 @@ public class Login_Controller {
         return "Register";
     }
 
+    // New validation endpoints
+    @PostMapping("/checkEmail")
+    @ResponseBody
+    public String checkEmailExists(@RequestParam("email") String email) {
+        boolean exists = login_service.checkEmailExists(email);
+        return exists ? "EXISTS" : "AVAILABLE";
+    }
+
+    @PostMapping("/checkMobile")
+    @ResponseBody
+    public String checkMobileExists(@RequestParam("mobile") String mobile) {
+        boolean exists = login_service.checkMobileExists(mobile);
+        return exists ? "EXISTS" : "AVAILABLE";
+    }
+
+    @PostMapping("/checkAadhar")
+    @ResponseBody
+    public String checkAadharExists(@RequestParam("aadhar") String aadhar) {
+        boolean exists = login_service.checkAadharExists(aadhar);
+        return exists ? "EXISTS" : "AVAILABLE";
+    }
+
     @PostMapping("/sendotp")
     @ResponseBody
     public String sendOtp(@RequestParam("email") String email, HttpSession session) {
@@ -35,8 +57,13 @@ public class Login_Controller {
             return "Email is required!";
         }
 
+        // Check if email already exists before sending OTP
+        boolean emailExists = login_service.checkEmailExists(email);
+        if (emailExists) {
+            return "❌ This email is already registered. Please use a different email address.";
+        }
+
         int otp = 100000 + new Random().nextInt(900000);
-       
 
         session.setAttribute("otp", otp);
         session.setAttribute("otpEmail", email);
@@ -77,11 +104,32 @@ public class Login_Controller {
     }
 
     @PostMapping("/register")
-    public String newRegister(@ModelAttribute Register_Entity register_entity, HttpSession session) {
+    public String newRegister(@ModelAttribute Register_Entity register_entity, HttpSession session, Model model) {
 
         Boolean isOtpVerified = (Boolean) session.getAttribute("isOtpVerified");
         if (isOtpVerified == null || !isOtpVerified) {
             return "redirect:/register_page?error=otpNotVerified";
+        }
+
+        // Final validation before registration
+        boolean emailExists = login_service.checkEmailExists(register_entity.getEmail());
+        boolean mobileExists = login_service.checkMobileExists(register_entity.getMobile());
+        boolean aadharExists = login_service.checkAadharExists(register_entity.getAadhar());
+
+        if (emailExists || mobileExists || aadharExists) {
+            if (emailExists) {
+                model.addAttribute("emailError", "Email is already registered.");
+            }
+            if (mobileExists) {
+                model.addAttribute("mobileError", "Mobile number is already registered.");
+            }
+            if (aadharExists) {
+                model.addAttribute("aadharError", "Aadhar number is already registered.");
+            }
+            
+            // Keep form data for re-population
+            model.addAttribute("register_entity", register_entity);
+            return "Register";
         }
 
         String fullname = register_entity.getFirstname() + " " +

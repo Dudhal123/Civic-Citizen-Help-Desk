@@ -376,7 +376,7 @@
             <div class="report-option" onclick="location.href='road_issues'">
               <i class="fas fa-road"></i>
               <div>
-                <h6 class="mb-1">Road & Infrastructure</h6>
+                <h6 class="mb-1 text-dark">Road & Infrastructure</h6>
                 <p class="mb-0 small text-muted">Potholes, damaged roads, traffic signals</p>
               </div>
             </div>
@@ -384,7 +384,7 @@
             <div class="report-option" onclick="location.href='water_issues'">
               <i class="fas fa-tint"></i>
               <div>
-                <h6 class="mb-1">Water Supply</h6>
+                <h6 class="mb-1 text-dark">Water Supply</h6>
                 <p class="mb-0 small text-muted">Water quality, pipeline leaks, supply issues</p>
               </div>
             </div>
@@ -392,7 +392,7 @@
             <div class="report-option" onclick="location.href='electricity_issues'">
               <i class="fas fa-bolt"></i>
               <div>
-                <h6 class="mb-1">Electricity</h6>
+                <h6 class="mb-1 text-dark">Electricity</h6>
                 <p class="mb-0 small text-muted">Power outages, street lights, wiring problems</p>
               </div>
             </div>
@@ -400,7 +400,7 @@
             <div class="report-option" onclick="location.href='waste_issues'">
               <i class="fas fa-trash"></i>
               <div>
-                <h6 class="mb-1">Waste Management</h6>
+                <h6 class="mb-1 text-dark">Waste Management</h6>
                 <p class="mb-0 small text-muted">Garbage collection, sanitation, recycling</p>
               </div>
             </div>
@@ -456,7 +456,7 @@
   <div class="container mt-5">
     <div class="row text-center mb-4">
       <h2 class="text-primary">Report Common Issues</h2>
-      <p class="text-muted">Select a category to file your complaint</p>
+      <p class="text-light">Select a category to file your complaint</p>
     </div>
     <div class="row g-4">
       <div class="col-md-2 col-4">

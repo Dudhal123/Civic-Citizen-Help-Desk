@@ -14,9 +14,10 @@ public class Civic_Citizen_HelpDesk_Service {
 	@Autowired
 	Civic_Citizen_HelpDesk_Repository repository;
 
+//	Register Method
 	public void insert_data(Civic_HelpDeskEntity register) {
 		
-		repository.save(register);
+	repository.save(register);
 		
 	}
 
@@ -25,16 +26,7 @@ public class Civic_Citizen_HelpDesk_Service {
 		return repository.findAll();
 	}
 
-//	 public boolean login_user(Civic_HelpDeskEntity civic_helpdeskentity) {
-//	        long count = repository.countByEmailAndPassword(
-//	            civic_helpdeskentity.getEmail(),
-//	            civic_helpdeskentity.getPassword()
-//	        );
-//	        return count > 0;
-//	    }
-	
-	// In Civic_Citizen_HelpDesk_Service
-	// Civic_Citizen_HelpDesk_Service.java
+//	Login Method
 	public boolean login_user(Civic_HelpDeskEntity user) {
 	    Civic_HelpDeskEntity dbUser = repository.findByEmail(user.getEmail());
 	    return dbUser != null && dbUser.getPassword().equals(user.getPassword());
