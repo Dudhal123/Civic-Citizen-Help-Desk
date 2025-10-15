@@ -34,22 +34,11 @@ public class Civic_Citizen_HelpDesk_Controller {
 		
 	}
 	
-	
-	  //login
+	 //login
 	@PostMapping("/login")
 	public ResponseEntity<Boolean> login(@RequestBody Civic_HelpDeskEntity user) {
 	    boolean isValid = service.login_user(user); 
 	    return ResponseEntity.ok(isValid); 
 	}
 
-	/*
-	 * @PostMapping("/login") public ResponseEntity<Boolean> login(@RequestBody
-	 * Civic_HelpDeskEntity civic_helpdeskentity) { boolean isValid =
-	 * service.login_user(civic_helpdeskentity); return ResponseEntity.ok(isValid);
-	 * }
-	 */
-	
-	
-
-	
 }
