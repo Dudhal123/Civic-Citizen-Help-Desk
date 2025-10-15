@@ -18,4 +18,5 @@ public interface Civic_Citizen_HelpDesk_Repository extends JpaRepository<Civic_H
     long countByEmailAndPassword(@Param("email") String email, @Param("password") String password);
 
     Civic_HelpDeskEntity findByEmail(String email);
+    
 }

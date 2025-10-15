@@ -14,10 +14,9 @@ public class Civic_Citizen_HelpDesk_Service {
 	@Autowired
 	Civic_Citizen_HelpDesk_Repository repository;
 
-//	Register Method
 	public void insert_data(Civic_HelpDeskEntity register) {
 		
-	repository.save(register);
+		repository.save(register);
 		
 	}
 
@@ -26,11 +25,32 @@ public class Civic_Citizen_HelpDesk_Service {
 		return repository.findAll();
 	}
 
-//	Login Method
+//	 public boolean login_user(Civic_HelpDeskEntity civic_helpdeskentity) {
+//	        long count = repository.countByEmailAndPassword(
+//	            civic_helpdeskentity.getEmail(),
+//	            civic_helpdeskentity.getPassword()
+//	        );
+//	        return count > 0;
+//	    }
+	
+	// Civic_Citizen_HelpDesk_Service.java
 	public boolean login_user(Civic_HelpDeskEntity user) {
 	    Civic_HelpDeskEntity dbUser = repository.findByEmail(user.getEmail());
 	    return dbUser != null && dbUser.getPassword().equals(user.getPassword());
 	}
 
-	
+	public boolean findbyemail(String email) {
+
+		return repository.existsByEmail(email);
+	}
+
+	public boolean findbymobile(String mobile) {
+
+		return repository.existsByEmail(mobile);
+	}
+
+	public boolean findbyaadhar(String aadhar) {
+
+		return repository.existsByAadhar(aadhar);
+	}
 }
