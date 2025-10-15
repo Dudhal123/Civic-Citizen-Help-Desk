@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,7 +50,16 @@ public class Civic_Citizen_HelpDesk_Controller {
 	 * }
 	 */
 	
-	
-
-	
+    @PostMapping("/checkEmail")
+	public boolean findbyemail(@PathVariable String email) {
+		return service.findbyemail(email);
+	}
+     @PostMapping("/checkMobile")
+	public boolean findbymobile(@PathVariable String mobile) {
+		return service.findbymobile(mobile);
+	}
+     @PostMapping("/checkAadhar")
+	public boolean findbyaadhar(@PathVariable String aadhar) {
+		return service.findbyaadhar(aadhar);
+	}
 }

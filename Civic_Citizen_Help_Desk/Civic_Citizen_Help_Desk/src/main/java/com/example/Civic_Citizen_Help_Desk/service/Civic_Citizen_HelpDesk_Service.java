@@ -33,12 +33,24 @@ public class Civic_Citizen_HelpDesk_Service {
 //	        return count > 0;
 //	    }
 	
-	// In Civic_Citizen_HelpDesk_Service
 	// Civic_Citizen_HelpDesk_Service.java
 	public boolean login_user(Civic_HelpDeskEntity user) {
 	    Civic_HelpDeskEntity dbUser = repository.findByEmail(user.getEmail());
 	    return dbUser != null && dbUser.getPassword().equals(user.getPassword());
 	}
 
-	
+	public boolean findbyemail(String email) {
+
+		return repository.existsByEmail(email);
+	}
+
+	public boolean findbymobile(String mobile) {
+
+		return repository.existsByEmail(mobile);
+	}
+
+	public boolean findbyaadhar(String aadhar) {
+
+		return repository.existsByAadhar(aadhar);
+	}
 }
