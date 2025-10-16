@@ -320,26 +320,7 @@ body {
 							<p class="mb-0">Sign in to your Civic Citizen account</p>
 						</div>
 						<div class="card-body">
-							<!-- Success Message -->
-							<c:if test="${not empty param.success}">
-								<div class="alert alert-success">
-									<i class="bi bi-check-circle-fill me-2"></i>
-									<strong>Success!</strong> 
-									<c:choose>
-										<c:when test="${param.success == 'registered'}">
-											Registration successful! Please login with your credentials.
-										</c:when>
-									</c:choose>
-								</div>
-							</c:if>
 
-							<!-- Error Message -->
-							<c:if test="${not empty error}">
-								<div class="alert alert-danger">
-									<i class="bi bi-exclamation-triangle-fill me-2"></i>
-									${error}
-								</div>
-							</c:if>
 
 							<form action="login" method="POST">
 								<!-- Username / Email -->
@@ -463,63 +444,8 @@ body {
 			</p>
 		</div>
 	</footer>
-
-	<!-- Captcha Script -->
-	<script>
-	  function generateCaptcha() {
-	    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-	    let captcha = '';
-	    for (let i = 0; i < 6; i++) {
-	      captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-	    }
-	    return captcha;
-	  }
-
-	  const captchaSpan = document.getElementById('captcha-value');
-	  const captchaHidden = document.getElementById('captcha-hidden');
-	  const refreshBtn = document.getElementById('refresh-captcha');
-
-	  function setCaptcha() {
-	    const captcha = generateCaptcha();
-	    captchaSpan.textContent = captcha;
-	    captchaHidden.value = captcha;
-	  }
-
-	  refreshBtn.addEventListener('click', setCaptcha);
-	  document.addEventListener('DOMContentLoaded', setCaptcha);
-
-	  // Auto-hide alerts after 5 seconds
-	  document.addEventListener("DOMContentLoaded", function() {
-	    const alerts = document.querySelectorAll('.alert');
-	    alerts.forEach(alert => {
-	      setTimeout(() => {
-	        alert.style.opacity = '0';
-	        setTimeout(() => {
-	          if (alert.parentNode) {
-	            alert.parentNode.removeChild(alert);
-	          }
-	        }, 300);
-	      }, 5000);
-	    });
-	  });
-
-	  // Text size adjustment
-	  document.querySelectorAll('.format-btn').forEach((button, index) => {
-	    button.addEventListener('click', function(e) {
-	      e.preventDefault();
-	      let currentSize = parseFloat(getComputedStyle(document.body).fontSize);
-	      
-	      if (index === 0) { // Increase
-	        document.body.style.fontSize = (currentSize + 2) + 'px';
-	      } else if (index === 1) { // Reset
-	        document.body.style.fontSize = '16px';
-	      } else if (index === 2) { // Decrease
-	        document.body.style.fontSize = (currentSize - 2) + 'px';
-	      }
-	    });
-	  });
-	</script>
-
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/MyJS.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
