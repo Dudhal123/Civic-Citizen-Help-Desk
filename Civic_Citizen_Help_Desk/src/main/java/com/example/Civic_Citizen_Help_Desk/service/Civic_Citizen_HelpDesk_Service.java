@@ -32,5 +32,18 @@ public class Civic_Citizen_HelpDesk_Service {
 	    return dbUser != null && dbUser.getPassword().equals(user.getPassword());
 	}
 
+	public boolean existsByEmail(String email) {
+		 return repository.existsByEmail(email);
+		
+	}
+
+	public boolean existsByMobile(String mobile) {
+		return repository.existsByMobile(mobile);
+	}
+
+	public boolean existsByAadhar(String aadhar) {
+		return repository.existsByAadhar(aadhar);
+	}
+
 	
 }
