@@ -42,7 +42,7 @@ public class OtpController {
             message.setText(text);
             mailSender.send(message);
 
-            System.out.println("✅ OTP email sent successfully to: " + email);
+            
             return "OTP sent successfully to your email: " + email;
 
         } catch (Exception e) {
