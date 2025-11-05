@@ -37,13 +37,21 @@
 			<div class="Logo d-flex justify-content-center align-items-center">
 				<img src="assets/image/Seal_of_Maharashtra-removebg-preview.png"
 					alt="Maharashtra Logo" width="30" height="30">
-				<p class="navbar nav-logo mb-0 text-light">Government of Maharashtra</p>
+				<p class="navbar nav-logo mb-0 text-light">Government of
+					Maharashtra</p>
 			</div>
 			<div class="d-flex">
-				<button class="btn format-btn" aria-label="Increase text size">A<sup>+</sup></button>
-				<button class="btn format-btn" aria-label="Reset text size">A<sup>=</sup></button>
-				<button class="btn format-btn" aria-label="Decrease text size">A<sup>-</sup></button>
-				<select class="format-btn form-select language-switcher" aria-label="Select language">
+				<button class="btn format-btn" aria-label="Increase text size">
+					A<sup>+</sup>
+				</button>
+				<button class="btn format-btn" aria-label="Reset text size">
+					A<sup>=</sup>
+				</button>
+				<button class="btn format-btn" aria-label="Decrease text size">
+					A<sup>-</sup>
+				</button>
+				<select class="format-btn form-select language-switcher"
+					aria-label="Select language">
 					<option value="en" selected>English</option>
 					<option value="mr">Marathi</option>
 					<option value="hi">Hindi</option>
@@ -179,19 +187,16 @@
 									</select>
 								</div>
 								<div class="col-md-6 mb-2">
-									<label class="form-label">Taluka</label> <select
-										class="form-select" name="taluka" id="taluka">
-										<option selected disabled value="">Select Taluka</option>
-										<!-- Talukas will be populated based on district selection -->
-									</select>
+									<label class="form-label">Taluka</label> 
+									<select id="taluka" name="taluka">
+								        <option value="">Select Taluka</option>
+								    </select>
 								</div>
 								<div class="col-md-6 mb-2">
-									<label class="form-label">City / Village</label> <select
-										class="form-select" name="village" id="village">
-										<option selected disabled value="">Select
-											City/Village</option>
-										<!-- Villages will be populated based on taluka selection -->
-									</select>
+									<label class="form-label">City / Village</label>
+									 <select id="village" name="village">
+								        <option value="">Select Village</option>
+								     </select>
 								</div>
 								<div class="col-12">
 									<label class="form-label">Pincode</label> <input type="text"
@@ -319,9 +324,8 @@
 		</div>
 	</footer>
 
-	<!-- JavaScript -->
-	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/Register.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/assets/js/Register.js"></script>
 	<!-- Bootstrap JS -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
