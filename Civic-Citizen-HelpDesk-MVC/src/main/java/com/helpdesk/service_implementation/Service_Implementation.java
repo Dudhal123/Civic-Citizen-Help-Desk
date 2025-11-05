@@ -55,7 +55,7 @@ public class Service_Implementation implements Login_Service {
 	            return Arrays.asList(villages);
 	        } catch (Exception e) {
 	            System.err.println("Error fetching villages for Taluka ID " + talukaId + ": " + e.getMessage());
-	            return List.of(); 
+	            return List.of();
 	        }
 		
 	}
