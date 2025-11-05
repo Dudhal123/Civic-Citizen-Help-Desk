@@ -24,216 +24,8 @@
 	rel="stylesheet"
 	integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
 	crossorigin="anonymous">
-
-<style>
-:root {
-    --primary-blue: #01284F;
-    --secondary-blue: #02386F;
-    --accent-yellow: #FFC107;
-    --light-bg: #F8F9FA;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.main {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 0;
-}
-
-.top-header {
-    background-color: var(--primary-blue);
-    font-size: 0.9rem;
-}
-
-.nav-logo {
-    margin: 0; 
-    font-size: 0.9rem !important;
-    padding: 0 2rem 0 0.3rem!important;
-}
-
-.language-switcher {
-    width: 6rem !important;
-    font-size: 0.9rem !important;
-    padding: 0.1rem 0.3rem !important;
-    color: white !important;
-    border-color: white !important;
-    background-color: var(--primary-blue) !important;
-}
-
-.format-btn {
-    margin-right: 0.5rem;
-    font-size: 0.9rem !important;
-    padding: 0.1rem 0.3rem !important;
-    color: white !important;
-    border-color: white !important;
-    font-weight: 600;
-}
-
-.logo-text {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0;
-    line-height: 1.2;
-}
-
-.logo-text:first-child {
-    margin-bottom: -0.3rem;
-}
-
-.login-card {
-    width: 100%;
-    max-width: 450px;
-    border: none;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-}
-
-.card-header {
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
-    color: white;
-    padding: 2rem;
-    text-align: center;
-    border-bottom: none;
-}
-
-.card-body {
-    padding: 2.5rem;
-    background-color: white;
-}
-
-.form-label {
-    font-weight: 600;
-    color: var(--primary-blue);
-    margin-bottom: 0.5rem;
-}
-
-.form-control {
-    border: 2px solid #e9ecef;
-    border-radius: 12px;
-    padding: 0.75rem 1rem;
-    transition: all 0.3s ease;
-    font-size: 0.95rem;
-}
-
-.form-control:focus {
-    border-color: var(--primary-blue);
-    box-shadow: 0 0 0 0.2rem rgba(1, 40, 79, 0.1);
-}
-
-.login-btn {
-    background-color: var(--accent-yellow);
-    border: none;
-    color: var(--primary-blue);
-    font-weight: 700;
-    padding: 0.75rem 2rem;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    width: 100%;
-}
-
-.login-btn:hover {
-    background-color: #e0a800;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
-}
-
-.info-box {
-    background: rgba(255, 255, 255, 0.15);
-    color: #fff;
-    border-radius: 1rem;
-    padding: 2rem;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.info-box h4 {
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.captcha-box {
-    user-select: none; 
-    -webkit-user-select: none;
-    -moz-user-select: none; 
-    font-family: 'Courier New', monospace;
-    letter-spacing: 3px;
-    background: linear-gradient(45deg, var(--primary-blue), var(--secondary-blue));
-    color: white;
-    border-radius: 10px;
-    padding: 0.75rem 1.5rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.alert-danger {
-    border-radius: 12px;
-    border: none;
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.alert-success {
-    border-radius: 12px;
-    border: none;
-    background-color: #d4edda;
-    color: #155724;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.feature-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    opacity: 0.9;
-}
-
-.btn-outline-dark {
-    border-radius: 12px;
-    padding: 0.5rem 1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.btn-outline-dark:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-@media (max-width: 768px) {
-    .logo-text {
-        font-size: 1.2rem;
-    }
-    
-    .card-body {
-        padding: 1.5rem;
-    }
-    
-    .info-box {
-        margin-bottom: 2rem;
-        padding: 1.5rem;
-    }
-    
-    .feature-icon {
-        font-size: 2.5rem;
-    }
-}
-</style>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/Login.css">
 </head>
 
 <body>
@@ -321,7 +113,6 @@ body {
 						</div>
 						<div class="card-body">
 
-
 							<form action="login" method="POST">
 								<!-- Username / Email -->
 								<div class="mb-4">
@@ -367,6 +158,13 @@ body {
 									<input type="text" class="form-control"
 										id="captcha-input" name="captchaEntered"
 										placeholder="Type the security code" required>
+									
+									<!-- Captcha Error Message -->
+									<c:if test="${captchaError != null}">
+										<div class="error-message">
+											<i class="bi bi-x-circle me-1"></i>${captchaError}
+										</div>
+									</c:if>
 								</div>
 
 								<!-- Login Button -->
@@ -445,7 +243,7 @@ body {
 		</div>
 	</footer>
 	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/MyJS.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/Login.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"

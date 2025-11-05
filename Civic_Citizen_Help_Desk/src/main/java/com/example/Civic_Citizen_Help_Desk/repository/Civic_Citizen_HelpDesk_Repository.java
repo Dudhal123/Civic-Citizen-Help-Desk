@@ -8,14 +8,16 @@ import com.example.Civic_Citizen_Help_Desk.entity.Civic_HelpDeskEntity;
 
 public interface Civic_Citizen_HelpDesk_Repository extends JpaRepository<Civic_HelpDeskEntity, Integer> {
 
-    boolean existsByEmail(String email);
-
-    boolean existsByMobile(String mobile);
-
-    boolean existsByAadhar(String aadhar);
-
     @Query("SELECT COUNT(c) FROM Civic_HelpDeskEntity c WHERE c.email = :email AND c.password = :password")
     long countByEmailAndPassword(@Param("email") String email, @Param("password") String password);
 
-    Civic_HelpDeskEntity findByEmail(String email);
+    @Query("SELECT COUNT(c) FROM Civic_HelpDeskEntity c WHERE c.email = :email")
+	long countOfEmail(@Param("email") String email);
+
+    @Query("SELECT COUNT(c) FROM Civic_HelpDeskEntity c WHERE c.mobile = :mobile")
+	long countOfMobile(@Param("mobile") String mobile);
+
+    @Query("SELECT COUNT(c) FROM Civic_HelpDeskEntity c WHERE c.aadhar = :aadhar")
+	long countOfAadhar(@Param("aadhar") String aadhar);
+
 }

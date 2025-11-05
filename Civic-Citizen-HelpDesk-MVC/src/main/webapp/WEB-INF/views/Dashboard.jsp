@@ -12,6 +12,7 @@
 <!-- Bootstrap & Font Awesome -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/Bootstrap.css">
+	
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/Style.css">
 <link rel="stylesheet"
@@ -28,15 +29,12 @@
 
 <body>
 	<!-- Top Header -->
-	<nav class="navbar border-bottom top-header py-1">
+	<nav class="navbar border-bottom top-header py-2">
 		<div class="container">
 			<div class="Logo d-flex justify-content-center align-items-center">
 				<img src="assets/image/Seal_of_Maharashtra-removebg-preview.png"
-					alt="Maharashtra Logo" width="30" height="30"
-					class="d-inline-block align-text-top">
-				<p
-					class="navbar nav-logo d-inline-block align-text-center mb-0 text-light">Government
-					of Maharashtra</p>
+					alt="Maharashtra Logo" width="30" height="30">
+				<p class="navbar nav-logo mb-0 text-light">Government of Maharashtra</p>
 			</div>
 			<div class="d-flex">
 				<button class="btn format-btn" aria-label="Increase text size">A<sup>+</sup></button>
@@ -131,15 +129,6 @@
 						href="faq"> <i class="fas fa-question-circle"></i> FAQ & Help
 					</a></li>
 				</ul>
-				<div class="d-flex">
-					<div class="input-group me-2" style="max-width: 300px;">
-						<input type="text" class="form-control"
-							placeholder="Search complaints..." aria-label="Search">
-						<button class="btn btn-warning" type="button">
-							<i class="fas fa-search"></i>
-						</button>
-					</div>
-				</div>
 			</div>
 		</div>
 	</nav>
@@ -637,7 +626,7 @@
 			</div>
 		</div>
 	</footer>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/MyJS.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/Login.js"></script>
 	<!-- Bootstrap JS -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"

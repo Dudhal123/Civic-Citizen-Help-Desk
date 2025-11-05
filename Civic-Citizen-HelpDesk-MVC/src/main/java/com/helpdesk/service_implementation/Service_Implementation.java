@@ -1,7 +1,6 @@
 package com.helpdesk.service_implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,65 +9,36 @@ import com.helpdesk.service.Login_Service;
 
 @Service
 public class Service_Implementation implements Login_Service {
-	
-	@Autowired
+
+    @Autowired
     private RestTemplate restTemplate;
 
-    private final String baseUrl = "http://localhost:8282/CivicCitizen";
-    
-   
+    private final String baseUrl = "http://localhost:8282/api";
+
+    @Override
     public void register_user(Register_Entity register_entity) {
         restTemplate.postForObject(baseUrl + "/register", register_entity, String.class);
     }
 
- 
+    @Override
     public boolean login(Register_Entity register_entity) {
         Boolean result = restTemplate.postForObject(baseUrl + "/login", register_entity, Boolean.class);
-        return result != null && result; 
+        return result != null && result;
     }
 
     @Override
-    public boolean checkEmailExists(String email) {
-        try {
-            ResponseEntity<Boolean> response = restTemplate.postForEntity(
-                baseUrl + "/checkEmail", 
-                email, 
-                Boolean.class
-            );
-            return response.getBody() != null && response.getBody();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    public Boolean emailValidator(String email) {
+       return restTemplate.postForObject(baseUrl + "/emailValidator", email, Boolean.class);
     }
 
-    @Override
-    public boolean checkMobileExists(String mobile) {
-        try {
-            ResponseEntity<Boolean> response = restTemplate.postForEntity(
-                baseUrl + "/checkMobile", 
-                mobile, 
-                Boolean.class
-            );
-            return response.getBody() != null && response.getBody();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+	@Override
+	public Boolean mobileValidator(String mobile) {
+		
+		return restTemplate.postForObject(baseUrl + "/mobileValidator", mobile, Boolean.class);
+	}
 
-    @Override
-    public boolean checkAadharExists(String aadhar) {
-        try {
-            ResponseEntity<Boolean> response = restTemplate.postForEntity(
-                baseUrl + "/checkAadhar", 
-                aadhar, 
-                Boolean.class
-            );
-            return response.getBody() != null && response.getBody();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+	@Override
+	public Boolean aadharValidator(String aadhar) {
+		return restTemplate.postForObject(baseUrl + "/aadharValidator", aadhar, Boolean.class);
+	}
 }
