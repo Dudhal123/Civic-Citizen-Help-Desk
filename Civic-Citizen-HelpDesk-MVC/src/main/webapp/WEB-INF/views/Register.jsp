@@ -183,6 +183,7 @@
 									<label class="form-label">District</label> <select
 										class="form-select" name="district" id="district">
 										<option selected disabled value="">Select District</option>
+										<option value="Solapur">Solapur</option>
 										<!-- Districts will be populated based on state selection -->
 									</select>
 								</div>
