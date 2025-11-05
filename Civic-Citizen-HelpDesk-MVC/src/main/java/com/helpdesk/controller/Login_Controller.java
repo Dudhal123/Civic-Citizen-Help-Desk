@@ -1,10 +1,6 @@
 package com.helpdesk.controller;
 
-import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +9,8 @@ import com.helpdesk.entity.Register_Entity;
 import com.helpdesk.service.Login_Service;
 
 import jakarta.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class Login_Controller {
@@ -20,115 +18,40 @@ public class Login_Controller {
     @Autowired
     private Login_Service login_service;
 
-    @Autowired
-    private JavaMailSender mailSender;
-
-    @RequestMapping("/register_page")
-    public String showRegisterPage() {
-        return "Register";
-    }
-
-    // New validation endpoints
     @PostMapping("/checkEmail")
     @ResponseBody
-    public String checkEmailExists(@RequestParam("email") String email) {
-        boolean exists = login_service.checkEmailExists(email);
-        return exists ? "EXISTS" : "AVAILABLE";
+    public Map<String, Boolean> checkEmail(@RequestParam("email") String email) {
+        Map<String, Boolean> response = new HashMap<>();
+        Boolean emailExists = login_service.emailValidator(email);
+        response.put("exists", emailExists);
+        return response;
     }
 
     @PostMapping("/checkMobile")
     @ResponseBody
-    public String checkMobileExists(@RequestParam("mobile") String mobile) {
-        boolean exists = login_service.checkMobileExists(mobile);
-        return exists ? "EXISTS" : "AVAILABLE";
+    public Map<String, Boolean> checkMobile(@RequestParam("mobile") String mobile) {
+        Map<String, Boolean> response = new HashMap<>();
+        Boolean mobileExists = login_service.mobileValidator(mobile);
+        response.put("exists", mobileExists);
+        return response;
     }
 
     @PostMapping("/checkAadhar")
     @ResponseBody
-    public String checkAadharExists(@RequestParam("aadhar") String aadhar) {
-        boolean exists = login_service.checkAadharExists(aadhar);
-        return exists ? "EXISTS" : "AVAILABLE";
-    }
-
-    @PostMapping("/sendotp")
-    @ResponseBody
-    public String sendOtp(@RequestParam("email") String email, HttpSession session) {
-        if (email == null || email.isEmpty()) {
-            return "Email is required!";
-        }
-
-        // Check if email already exists before sending OTP
-        boolean emailExists = login_service.checkEmailExists(email);
-        if (emailExists) {
-            return "❌ This email is already registered. Please use a different email address.";
-        }
-
-        int otp = 100000 + new Random().nextInt(900000);
-
-        session.setAttribute("otp", otp);
-        session.setAttribute("otpEmail", email);
-        session.setAttribute("isOtpVerified", false);
-
-        try {
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(email);
-            message.setSubject("Your Civic Citizen HelpDesk OTP Code");
-            message.setText("Dear User,\n\nYour OTP for registration is: " + otp +
-                    "\n\nPlease do not share this code with anyone.\n\nThank you,\nCivic Citizen HelpDesk Team");
-
-            mailSender.send(message);
-            
-            return "OTP sent successfully to your email!";
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "❌ Failed to send OTP. Please check your email address or SMTP configuration.";
-        }
-    }
-
-    @PostMapping("/verifyotp")
-    @ResponseBody
-    public String verifyOtp(@RequestParam("otp") String enteredOtp, HttpSession session) {
-        Object otpObj = session.getAttribute("otp");
-
-        if (otpObj == null) {
-            return "No OTP found. Please request a new one.";
-        }
-
-        String generatedOtp = otpObj.toString();
-        if (enteredOtp.equals(generatedOtp)) {
-            session.setAttribute("isOtpVerified", true);
-            return "OTP verified successfully!";
-        } else {
-            return "Invalid OTP. Please try again.";
-        }
+    public Map<String, Boolean> checkAadhar(@RequestParam("aadhar") String aadhar) {
+        Map<String, Boolean> response = new HashMap<>();
+        Boolean aadharExists = login_service.aadharValidator(aadhar);
+        response.put("exists", aadharExists);
+        return response;
     }
 
     @PostMapping("/register")
     public String newRegister(@ModelAttribute Register_Entity register_entity, HttpSession session, Model model) {
 
+        // Otp Verification
         Boolean isOtpVerified = (Boolean) session.getAttribute("isOtpVerified");
         if (isOtpVerified == null || !isOtpVerified) {
-            return "redirect:/register_page?error=otpNotVerified";
-        }
-
-        // Final validation before registration
-        boolean emailExists = login_service.checkEmailExists(register_entity.getEmail());
-        boolean mobileExists = login_service.checkMobileExists(register_entity.getMobile());
-        boolean aadharExists = login_service.checkAadharExists(register_entity.getAadhar());
-
-        if (emailExists || mobileExists || aadharExists) {
-            if (emailExists) {
-                model.addAttribute("emailError", "Email is already registered.");
-            }
-            if (mobileExists) {
-                model.addAttribute("mobileError", "Mobile number is already registered.");
-            }
-            if (aadharExists) {
-                model.addAttribute("aadharError", "Aadhar number is already registered.");
-            }
-            
-            // Keep form data for re-population
-            model.addAttribute("register_entity", register_entity);
+            model.addAttribute("error", "Please verify your email with OTP first.");
             return "Register";
         }
 
@@ -166,17 +89,16 @@ public class Login_Controller {
             return "Login";
         }
         else {
-        	httpSession.setAttribute("email", username);
-        	String email = (String) httpSession.getAttribute("email");
-        	model.addAttribute("username", email);
-        	return "Dashboard";
+            httpSession.setAttribute("email", username);
+            String email = (String) httpSession.getAttribute("email");
+            model.addAttribute("username", email);
+            return "Dashboard";
         }
     }
     
     @RequestMapping("/logout")
     public String logout(HttpSession httpSession) {
-    	httpSession.invalidate();
-		return "Login";
-    	
+        httpSession.invalidate();
+        return "Login";
     }
 }
