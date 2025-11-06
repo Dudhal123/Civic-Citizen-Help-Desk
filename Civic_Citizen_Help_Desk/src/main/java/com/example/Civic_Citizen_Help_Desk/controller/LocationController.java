@@ -1,6 +1,7 @@
 package com.example.Civic_Citizen_Help_Desk.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,10 +25,10 @@ public class LocationController {
 	}
 
 	
-	@GetMapping("/getVillageByTaluka/{talukaId}")
-	public List<village> getVillage(@PathVariable("talukaId") Long talukaId) {
+	@GetMapping("/getVillageByTaluka/{talukaName}")
+	public List<village> getVillage(@PathVariable("talukaName")String name) {
 		
-		return service.getdata(talukaId);
+		return service.getdata(name);
 	
 	}
 	
