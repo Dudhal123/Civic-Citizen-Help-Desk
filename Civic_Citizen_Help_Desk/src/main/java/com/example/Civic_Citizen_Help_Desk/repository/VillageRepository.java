@@ -11,5 +11,7 @@ import com.example.Civic_Citizen_Help_Desk.entity.village;
 @Repository
 public interface VillageRepository extends JpaRepository<village, Long> {
     
-	List<village> findByTalukaId(Long talukaId);
+	List<village> findByTalukaId(String talukaName);
+	
+	
 }
