@@ -2,7 +2,6 @@ package com.example.Civic_Citizen_Help_Desk.service;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,18 +14,19 @@ import com.example.Civic_Citizen_Help_Desk.repository.VillageRepository;
 public class LocationService {
 	
 	@Autowired
-	VillageRepository vrepo;
+	TalukaRepository talukaRepository;
+	
 	@Autowired
-	TalukaRepository trepo;
+	VillageRepository villageRepository;
 	
 	   public List<village> getdata(Long talukaId) {
 		
-		   return vrepo.findByTalukaId(talukaId);
+		   return villageRepository.findByTalukaId(talukaId);
        }
 
 	   public List<Taluka> gettaluka() {
 		
-		return trepo.findAll();
+		return talukaRepository.findAll();
 	   
 	   }
 	   
