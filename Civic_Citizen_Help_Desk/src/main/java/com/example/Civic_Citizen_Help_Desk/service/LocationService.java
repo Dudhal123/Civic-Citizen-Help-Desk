@@ -19,9 +19,9 @@ public class LocationService {
 	@Autowired
 	VillageRepository villageRepository;
 	
-	   public List<village> getdata(Long talukaId) {
+	   public List<village> getdata(String talukaName) {
 		
-		   return villageRepository.findByTalukaId(talukaId);
+		   return villageRepository.findByTalukaId(talukaName);
        }
 
 	   public List<Taluka> gettaluka() {
