@@ -28,6 +28,60 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/Register.css">
+	<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Load Talukas on page load
+    fetch("/getTaluka")
+        .then(response => {
+            if (!response.ok) throw new Error("Network response was not ok");
+            return response.json();
+        })
+        .then(data => {
+            const talukaSelect = document.getElementById("taluka");
+            talukaSelect.innerHTML = '<option value="">--Select Taluka--</option>';
+            
+            data.forEach(taluka => {
+                const option = document.createElement("option");
+                option.value = taluka.id;
+                option.textContent = taluka.name;
+                talukaSelect.appendChild(option);
+            });
+        })
+        .catch(error => {
+            alert("Failed to load talukas: " + error.message);
+        });
+
+    // Load Villages when Taluka is selected
+    document.getElementById("taluka").addEventListener("change", function () {
+        const talukaId = this.value;
+        const villageSelect = document.getElementById("village");
+
+        // Reset the village dropdown
+        villageSelect.innerHTML = '<option value="">--Select Village--</option>';
+
+        if (talukaId) {
+            fetch("/getVillageByTaluka/" + talukaId)
+                .then(response => {
+                    if (!response.ok) throw new Error("Network response was not ok");
+                    return response.json();
+                })
+                .then(data => {
+                    data.forEach(village => {
+                        const option = document.createElement("option");
+                        option.value = village.id;
+                        option.textContent = village.name;
+                        villageSelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    alert("Failed to load villages: " + error.message);
+                });
+        }
+    });
+
+});
+</script>
 </head>
 
 <body>
@@ -189,13 +243,13 @@
 								</div>
 								<div class="col-md-6 mb-2">
 									<label class="form-label">Taluka</label> 
-									<select id="taluka" name="taluka">
+									<select id="taluka" name="taluka" class="form-select">
 								        <option value="">Select Taluka</option>
 								    </select>
 								</div>
 								<div class="col-md-6 mb-2">
 									<label class="form-label">City / Village</label>
-									 <select id="village" name="village">
+									 <select id="village" name="village" class="form-select">
 								        <option value="">Select Village</option>
 								     </select>
 								</div>
@@ -325,6 +379,7 @@
 		</div>
 	</footer>
 
+
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/assets/js/Register.js"></script>
 	<!-- Bootstrap JS -->
@@ -333,4 +388,6 @@
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 		crossorigin="anonymous"></script>
 </body>
+
+
 </html>

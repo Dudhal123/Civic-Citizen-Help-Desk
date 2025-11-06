@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -46,22 +47,28 @@ public class Service_Implementation implements Login_Service {
 	public Boolean aadharValidator(String aadhar) {
 		return restTemplate.postForObject(baseUrl + "/aadharValidator", aadhar, Boolean.class);
 	}
+	
 
-	public List<village> findByTalukaId(Long talukaId) {
-		
-		  try {
-	            village[] villages = restTemplate.getForObject(baseUrl + "/getVillageByTaluka/{talukaId}", village[].class, talukaId);
-
-	            return Arrays.asList(villages);
+	 public List<village> findByTalukaId(Long talukaId) {
+	        try {
+	            ResponseEntity<village[]> response = restTemplate.getForEntity(
+	                baseUrl + "/getVillageByTaluka/{talukaId}",
+	                village[].class,
+	                talukaId
+	            );
+	            return response.getBody() != null ? Arrays.asList(response.getBody()) : List.of();
 	        } catch (Exception e) {
-	            System.err.println("Error fetching villages for Taluka ID " + talukaId + ": " + e.getMessage());
+	            System.err.println("Error fetching villages: " + e.getMessage());
 	            return List.of();
 	        }
-		
-	}
+	    }
 
-	public List<Taluka> findAll() {
-		Taluka[] talukas = restTemplate.getForObject(baseUrl + "/getTaluka", Taluka[].class);
-        return Arrays.asList(talukas);
-	}
+	    public List<Taluka> findAll() {
+	        ResponseEntity<Taluka[]> response = restTemplate.getForEntity(
+	            baseUrl + "/getTaluka",
+	            Taluka[].class
+	        );
+	        return response.getBody() != null ? Arrays.asList(response.getBody()) : List.of();
+	    }
+
 }
