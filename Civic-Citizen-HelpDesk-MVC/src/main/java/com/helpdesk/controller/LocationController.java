@@ -5,7 +5,10 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,17 +23,18 @@ public class LocationController {
 	LocationService locationService;
 	
 	@GetMapping("/getTaluka")
-	List<Taluka> gettaluka() {
+	public List<Taluka> gettaluka() {
 		
-		return locationService.gettaluka();
+		List<Taluka> taluka = locationService.gettaluka();
+		return taluka;
 	}
 
-	
 	@GetMapping("/getVillageByTaluka/{talukaId}")
-	List<village> getVillage(@PathVariable("talukaId") Long talukaId) {
+	public List<village> getVillage(@PathVariable("talukaId") Long talukaId) {
 		
-		return locationService.getdata(talukaId);
-	
+		List<village> villages = locationService.getdata(talukaId);
+		
+		return villages;
 	}
 	
 }
