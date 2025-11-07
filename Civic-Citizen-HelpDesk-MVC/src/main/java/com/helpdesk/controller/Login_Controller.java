@@ -82,15 +82,15 @@ public class Login_Controller {
         }
 
         Register_Entity register_entity = new Register_Entity(username, password);
-
+        Login_Controller login_controller= new Login_Controller();
         boolean isValid = login_service.login(register_entity);
         if (!isValid) {
             model.addAttribute("error", "Invalid username or password.");
             return "Login";
         }
         else {
-            httpSession.setAttribute("email", username);
-            String email = (String) httpSession.getAttribute("email");
+            httpSession.setAttribute("username", username);
+            String email = (String) httpSession.getAttribute("name");
             model.addAttribute("username", email);
             return "Dashboard";
         }

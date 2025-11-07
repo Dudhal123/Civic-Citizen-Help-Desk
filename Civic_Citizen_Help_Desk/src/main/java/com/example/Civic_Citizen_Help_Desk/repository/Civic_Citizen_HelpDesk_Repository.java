@@ -20,4 +20,7 @@ public interface Civic_Citizen_HelpDesk_Repository extends JpaRepository<Civic_H
     @Query("SELECT COUNT(c) FROM Civic_HelpDeskEntity c WHERE c.aadhar = :aadhar")
 	long countOfAadhar(@Param("aadhar") String aadhar);
 
+    @Query("SELECT c.fullname FROM Civic_HelpDeskEntity c WHERE c.email = :email")
+	String GetUserByEmail(@Param("email") String email);
+
 }

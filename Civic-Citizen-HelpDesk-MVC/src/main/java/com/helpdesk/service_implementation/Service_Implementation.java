@@ -71,4 +71,11 @@ public class Service_Implementation implements Login_Service {
 	        return response.getBody() != null ? Arrays.asList(response.getBody()) : List.of();
 	    }
 
+		@Override
+		public String getUserByEmail(String email) {
+			
+			return restTemplate.postForObject(baseUrl + "/UserByEmail", email, String.class);
+			
+		}
+
 }

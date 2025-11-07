@@ -12,4 +12,6 @@ public interface Login_Service {
 	Boolean mobileValidator(String mobile);
 
 	Boolean aadharValidator(String aadhar);
+
+	String getUserByEmail(String email);
 }
