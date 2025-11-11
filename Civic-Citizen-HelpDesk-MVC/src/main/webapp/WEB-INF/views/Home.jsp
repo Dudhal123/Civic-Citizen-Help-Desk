@@ -470,7 +470,7 @@
 									<i class="fas fa-user-circle fa-2x text-primary"></i>
 								</div>
 								<div class="flex-grow-1 ms-3">
-									<h6 class="mb-0">Amit Patil</h6>
+									<h6 class="mb-0">Shankar Dudhal</h6>
 									<small class="text-muted">Mumbai</small>
 								</div>
 							</div>
@@ -492,6 +492,8 @@
 					<p class="small mb-0">An Initiative by Government of
 						Maharashtra</p>
 				</div>
+				
+				
 				<div class="col-md-4 text-center mb-3 mb-md-0">
 					<h6>Quick Links</h6>
 					<div class="d-flex flex-column">
@@ -514,6 +516,8 @@
 					<p class="small mb-0">
 						<i class="fas fa-clock me-2"></i> Mon-Sat: 9:00 AM - 6:00 PM
 					</p>
+					
+					
 				</div>
 			</div>
 			<hr class="bg-light my-3">
@@ -524,6 +528,7 @@
 							class="text-decoration-none text-light">Privacy Policy</a> | <a
 							href="#" class="text-decoration-none text-light">Terms of Use</a>
 						| <a href="#" class="text-decoration-none text-light">Accessibility
+							Statement</a> <a href="#" class="text-decoration-none text-light">Accessibility
 							Statement</a>
 					</p>
 				</div>
