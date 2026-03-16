@@ -48,7 +48,7 @@ public class Login_Controller {
     @PostMapping("/register")
     public String newRegister(@ModelAttribute Register_Entity register_entity, HttpSession session, Model model) {
 
-        // Otp Verification
+        // OTP Verification
         Boolean isOtpVerified = (Boolean) session.getAttribute("isOtpVerified");
         if (isOtpVerified == null || !isOtpVerified) {
             model.addAttribute("error", "Please verify your email with OTP first.");
@@ -58,9 +58,11 @@ public class Login_Controller {
         String fullname = register_entity.getFirstname() + " " +
                 (register_entity.getMiddlename() != null ? register_entity.getMiddlename() + " " : "") +
                 register_entity.getLastname();
+
         register_entity.setFullname(fullname.trim());
 
         login_service.register_user(register_entity);
+
         session.removeAttribute("otp");
         session.removeAttribute("otpEmail");
         session.removeAttribute("isOtpVerified");
@@ -76,26 +78,30 @@ public class Login_Controller {
             @RequestParam("captchaGenerated") String captchaGenerated,
             Model model, HttpSession httpSession) {
 
+        // Captcha validation
         if (!captchaEntered.equals(captchaGenerated)) {
             model.addAttribute("error", "Invalid Captcha. Please try again.");
             return "Login";
         }
 
         Register_Entity register_entity = new Register_Entity(username, password);
-        Login_Controller login_controller= new Login_Controller();
+
         boolean isValid = login_service.login(register_entity);
+
         if (!isValid) {
             model.addAttribute("error", "Invalid username or password.");
             return "Login";
-        }
-        else {
+        } else {
+
             httpSession.setAttribute("username", username);
-            String email = (String) httpSession.getAttribute("name");
+            String email = (String) httpSession.getAttribute("username");
+
             model.addAttribute("username", email);
+
             return "Dashboard";
         }
     }
-    
+
     @RequestMapping("/logout")
     public String logout(HttpSession httpSession) {
         httpSession.invalidate();

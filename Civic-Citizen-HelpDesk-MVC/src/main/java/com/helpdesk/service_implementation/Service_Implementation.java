@@ -71,6 +71,8 @@ public class Service_Implementation implements Login_Service {
 	        return response.getBody() != null ? Arrays.asList(response.getBody()) : List.of();
 	    }
 
+<<<<<<< HEAD
+=======
 		@Override
 		public String getUserByEmail(String email) {
 			
@@ -78,4 +80,5 @@ public class Service_Implementation implements Login_Service {
 			
 		}
 
+>>>>>>> 1a8cf8cb146fc2d7699f6adcaa931e1ddd89a5c7
 }
