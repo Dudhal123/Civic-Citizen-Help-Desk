@@ -50,4 +50,17 @@ public class LoginController {
     	boolean isValid = civicService.aadharValidation(aadhar);
     	return isValid;
     }
+<<<<<<< HEAD
 }
+=======
+    
+    @RequestMapping("/UserByEmail")
+    public String GetUserByEmail(@RequestBody String email) {
+    	
+    	return civicService.GetUserByEmail(email);
+    	
+    }
+    
+}
+
+>>>>>>> 1a8cf8cb146fc2d7699f6adcaa931e1ddd89a5c7

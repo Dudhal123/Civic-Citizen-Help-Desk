@@ -55,4 +55,12 @@ public class Civic_Citizen_HelpDesk_Service {
 		}
 		return false;
 	}
+<<<<<<< HEAD
+=======
+
+	public String GetUserByEmail(String email) {
+		
+		return repository.GetUserByEmail(email);
+	}
+>>>>>>> 1a8cf8cb146fc2d7699f6adcaa931e1ddd89a5c7
 }

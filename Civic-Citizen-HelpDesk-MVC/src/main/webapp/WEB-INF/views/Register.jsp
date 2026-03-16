@@ -39,7 +39,11 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(data => {
             const talukaSelect = document.getElementById("taluka");
+<<<<<<< HEAD
             talukaSelect.innerHTML = '<option value="">--Select Taluka--</option>';
+=======
+            talukaSelect.innerHTML = '<option value="">Select Taluka</option>';
+>>>>>>> 1a8cf8cb146fc2d7699f6adcaa931e1ddd89a5c7
             
             data.forEach(taluka => {
                 const option = document.createElement("option");
@@ -58,7 +62,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const villageSelect = document.getElementById("village");
 
         // Reset the village dropdown
+<<<<<<< HEAD
         villageSelect.innerHTML = '<option value="">--Select Village--</option>';
+=======
+        villageSelect.innerHTML = '<option value="">Select Village</option>';
+>>>>>>> 1a8cf8cb146fc2d7699f6adcaa931e1ddd89a5c7
 
         if (talukaId) {
             fetch("/getVillageByTaluka/" + talukaId)
@@ -69,7 +77,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 .then(data => {
                     data.forEach(village => {
                         const option = document.createElement("option");
+<<<<<<< HEAD
                         option.value = village.id;
+=======
+                        option.value = village.name;
+>>>>>>> 1a8cf8cb146fc2d7699f6adcaa931e1ddd89a5c7
                         option.textContent = village.name;
                         villageSelect.appendChild(option);
                     });

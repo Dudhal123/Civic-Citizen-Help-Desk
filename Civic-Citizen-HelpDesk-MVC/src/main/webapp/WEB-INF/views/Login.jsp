@@ -159,12 +159,15 @@
 										id="captcha-input" name="captchaEntered"
 										placeholder="Type the security code" required>
 									
+<<<<<<< HEAD
 									<!-- Captcha Error Message -->
 									<c:if test="${captchaError != null}">
 										<div class="error-message">
 											<i class="bi bi-x-circle me-1"></i>${captchaError}
 										</div>
 									</c:if>
+=======
+>>>>>>> 1a8cf8cb146fc2d7699f6adcaa931e1ddd89a5c7
 								</div>
 
 								<!-- Login Button -->

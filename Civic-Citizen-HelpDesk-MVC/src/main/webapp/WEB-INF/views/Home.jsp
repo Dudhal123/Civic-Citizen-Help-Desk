@@ -470,7 +470,11 @@
 									<i class="fas fa-user-circle fa-2x text-primary"></i>
 								</div>
 								<div class="flex-grow-1 ms-3">
+<<<<<<< HEAD
 									<h6 class="mb-0">Amit Patil</h6>
+=======
+									<h6 class="mb-0">Shankar Dudhal</h6>
+>>>>>>> 1a8cf8cb146fc2d7699f6adcaa931e1ddd89a5c7
 									<small class="text-muted">Mumbai</small>
 								</div>
 							</div>
@@ -492,6 +496,11 @@
 					<p class="small mb-0">An Initiative by Government of
 						Maharashtra</p>
 				</div>
+<<<<<<< HEAD
+=======
+				
+				
+>>>>>>> 1a8cf8cb146fc2d7699f6adcaa931e1ddd89a5c7
 				<div class="col-md-4 text-center mb-3 mb-md-0">
 					<h6>Quick Links</h6>
 					<div class="d-flex flex-column">
@@ -514,6 +523,11 @@
 					<p class="small mb-0">
 						<i class="fas fa-clock me-2"></i> Mon-Sat: 9:00 AM - 6:00 PM
 					</p>
+<<<<<<< HEAD
+=======
+					
+					
+>>>>>>> 1a8cf8cb146fc2d7699f6adcaa931e1ddd89a5c7
 				</div>
 			</div>
 			<hr class="bg-light my-3">
@@ -524,6 +538,10 @@
 							class="text-decoration-none text-light">Privacy Policy</a> | <a
 							href="#" class="text-decoration-none text-light">Terms of Use</a>
 						| <a href="#" class="text-decoration-none text-light">Accessibility
+<<<<<<< HEAD
+=======
+							Statement</a> <a href="#" class="text-decoration-none text-light">Accessibility
+>>>>>>> 1a8cf8cb146fc2d7699f6adcaa931e1ddd89a5c7
 							Statement</a>
 					</p>
 				</div>
